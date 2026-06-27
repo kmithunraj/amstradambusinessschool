@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Playfair Display", Georgia, serif;
+  --color-abs-navy: #002147;
+  --color-abs-navy-light: #003366;
+  --color-abs-gold: #c4a035;
+  --color-abs-gold-light: #d4b545;
+  --color-abs-cream: #f8f6f1;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
