@@ -22,17 +22,6 @@ import {
 } from 'lucide-react'
 import { landingImages } from '../data/landingImages'
 
-const navLinks = [
-  { href: '#programme', label: 'Programme' },
-  { href: '#who-its-for', label: 'Who It\'s For' },
-  { href: '#curriculum', label: 'Curriculum' },
-  { href: '#amsterdam', label: 'Amsterdam' },
-  { href: '#industry-leaders', label: 'Industry Leaders' },
-  { href: '#admissions', label: 'Admissions' },
-  { href: '#faq', label: 'FAQ' },
-  { href: '#contact', label: 'Contact' },
-]
-
 const stats = [
   { value: 'Triple Crown', label: 'AACSB · AMBA · EQUIS Accredited' },
   { value: '#1 NL', label: 'Business School in the Netherlands' },
@@ -232,13 +221,6 @@ export default function LandingPage() {
               <p className="text-sm font-bold text-white">Amsterdam Business School</p>
               <p className="text-xs text-white/60">University of Amsterdam</p>
             </div>
-          </div>
-          <div className="hidden items-center gap-6 xl:flex">
-            {navLinks.map((link) => (
-              <a key={link.href} href={link.href} className="text-sm text-white/80 hover:text-white">
-                {link.label}
-              </a>
-            ))}
           </div>
           <div className="flex items-center gap-3">
             <a
@@ -889,7 +871,7 @@ export default function LandingPage() {
       {/* Footer */}
       <footer className="bg-abs-navy py-16 text-white/70">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
             <div>
               <p className="font-semibold text-white">Amsterdam Business School</p>
               <p className="mt-2 text-sm">University of Amsterdam</p>
@@ -905,23 +887,6 @@ export default function LandingPage() {
               <p className="font-semibold text-white">India Executive Track</p>
               <p className="mt-2 text-sm">Admissions & student support for Indian cohort participants.</p>
               <p className="text-sm">india-track@abs.uva.nl</p>
-            </div>
-            <div>
-              <p className="font-semibold text-white">Quick Links</p>
-              <ul className="mt-2 space-y-2 text-sm">
-                {navLinks.map((link) => (
-                  <li key={link.href}>
-                    <a href={link.href} className="hover:text-white">
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
-                <li>
-                  <Link to="/login" className="hover:text-white">
-                    Student Login
-                  </Link>
-                </li>
-              </ul>
             </div>
           </div>
           <div className="mt-12 border-t border-white/10 pt-8 text-center text-xs">
