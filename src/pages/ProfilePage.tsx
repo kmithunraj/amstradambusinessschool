@@ -1,6 +1,16 @@
 import { useAuth } from '../context/AuthContext'
 import { Mail, MapPin, Phone, Calendar, GraduationCap, Building2, Rocket, Award } from 'lucide-react'
-import { programmeStartDate, orientationDate, admissionCategory, programmeDegree, selectionDate, dueDiligenceDeadline, dueDiligenceFee } from '../data/mockData'
+import {
+  programmeStartDate,
+  orientationDate,
+  admissionCategory,
+  programmeDegree,
+  selectionDate,
+  dueDiligenceFee,
+  courseFeeTotal,
+  autoDebitLastDate,
+} from '../data/mockData'
+import CourseFeeBreakup from '../components/CourseFeeBreakup'
 
 export default function ProfilePage() {
   const { user } = useAuth()
@@ -14,7 +24,7 @@ export default function ProfilePage() {
     month: 'long',
     year: 'numeric',
   })
-  const dueDiligenceFormatted = new Date(dueDiligenceDeadline).toLocaleDateString('en-IN', {
+  const autoDebitFormatted = new Date(autoDebitLastDate).toLocaleDateString('en-IN', {
     day: 'numeric',
     month: 'long',
     year: 'numeric',
@@ -87,12 +97,23 @@ export default function ProfilePage() {
       </div>
 
       <div className="rounded-xl border border-gray-200 bg-white p-6">
+        <h2 className="font-semibold text-abs-navy">Course Fee Structure</h2>
+        <p className="mt-1 text-sm text-gray-600">
+          24-month Executive MBA fee breakup (excl. Degree Due Diligence fee of ₹{dueDiligenceFee.toLocaleString('en-IN')}).
+        </p>
+        <div className="mt-4">
+          <CourseFeeBreakup />
+        </div>
+      </div>
+
+      <div className="rounded-xl border border-gray-200 bg-white p-6">
         <h2 className="font-semibold text-abs-navy">Pre-start Checklist</h2>
         <div className="mt-4 space-y-3">
           {[
             { task: 'Read your selection email from Admissions', done: true },
             { task: 'Complete e-NACH registration (company bank account)', done: true },
-            { task: `Pay Degree Due Diligence fee (₹${dueDiligenceFee.toLocaleString('en-IN')}) by ${dueDiligenceFormatted}`, done: false },
+            { task: `Pay Degree Due Diligence fee (₹${dueDiligenceFee.toLocaleString('en-IN')})`, done: true },
+            { task: `Ensure course fee auto-debit (₹${courseFeeTotal.toLocaleString('en-IN')} incl. BTW) — last debit by ${autoDebitFormatted}`, done: false },
             { task: 'Download Semester 1 pre-reading materials', done: false },
             { task: `Attend cohort orientation (${orientationFormatted})`, done: false },
           ].map(({ task, done }) => (

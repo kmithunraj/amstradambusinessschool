@@ -1,7 +1,6 @@
-/** Verified Unsplash URLs — broken IDs were returning 404 */
+/** Verified image URLs — hero uses local ABS campus photo */
 export const landingImages = {
-  heroAmsterdam:
-    'https://images.unsplash.com/photo-1534351590666-13e3e96b5017?w=1920&q=80&auto=format&fit=crop',
+  heroAmsterdamBusinessSchool: '/images/amsterdam-business-school.jpg',
   executiveMeeting:
     'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80&auto=format&fit=crop',
   universityCampus:

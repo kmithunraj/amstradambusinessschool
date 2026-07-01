@@ -243,9 +243,9 @@ export default function LandingPage() {
       <section className="relative flex min-h-screen items-center pt-16">
         <div className="absolute inset-0">
           <img
-            src={landingImages.heroAmsterdam}
-            alt="Amsterdam canals at sunset"
-            className="h-full w-full object-cover"
+            src={landingImages.heroAmsterdamBusinessSchool}
+            alt="Amsterdam Business School, University of Amsterdam — Roeterseilandcampus, Plantage Muidergracht"
+            className="h-full w-full object-cover object-center"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-abs-navy/95 via-abs-navy/80 to-abs-navy/40" />
         </div>

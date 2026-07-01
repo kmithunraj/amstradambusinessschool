@@ -65,18 +65,106 @@ export const scheduleEvents = [
 export const admissionCategory = 'Tier 2'
 export const programmeDegree = 'Business Development'
 export const selectionDate = '2026-06-26'
-export const dueDiligenceDeadline = '2026-06-29'
-export const dueDiligenceFee = 30000
+
+export {
+  autoDebitLastDate,
+  dueDiligenceDeadline,
+  dueDiligenceFee,
+  courseFeeExclTax,
+  courseFeeBtw,
+  courseFeeBtwRate,
+  courseFeeTotal,
+  totalPayable,
+  courseFeeInstalments,
+  courseFeeBreakup,
+  formatCourseFeeBreakupText,
+  formatInr,
+} from './fees'
+
+import {
+  autoDebitLastDate,
+  courseFeeExclTax,
+  courseFeeBtw,
+  courseFeeTotal,
+  formatCourseFeeBreakupText,
+  formatInr,
+} from './fees'
 
 export const emails = [
+  {
+    id: 6,
+    from: 'Finance Office · Amsterdam Business School',
+    subject: 'Course Fee — Auto-Debit Schedule & Payment Details',
+    preview: 'Your course fee of ₹3,19,300 (incl. BTW) will be auto-debited in a single instalment via e-NACH. Last date of auto-debit: 5 July 2026...',
+    date: '2026-06-28',
+    unread: true,
+    feeType: 'course-fee' as const,
+    deadline: autoDebitLastDate,
+    body: `Dear Mithun Raj Kumar,
+
+Thank you for your enrolment in the Business Development degree under the Tier 2 category. Please find below your course fee breakup and auto-debit schedule.
+
+${formatCourseFeeBreakupText()}
+
+Fee Summary (incl. Amsterdam BTW):
+Course Fee (excl. BTW): ${formatInr(courseFeeExclTax)}
+BTW — Belasting toegevoegde waarde (3%): ${formatInr(courseFeeBtw)}
+Total Course Fee (incl. BTW): ${formatInr(courseFeeTotal)}
+
+Auto-Debit (Company Bank Account):
+Single Instalment: ${formatInr(courseFeeTotal)} — Auto-debit on 5 July 2026
+
+Last Date of Auto-Debit: 5 July 2026
+
+Per Amsterdam Business School invoicing policy, BTW (Dutch VAT) is applied to executive programme services for India-track participants as per cross-border education regulations.
+
+Please ensure sufficient balance is maintained in your registered company bank account before the debit date. All programme payments must be processed through your company bank account as per programme policy.
+
+If you have any questions regarding your fee schedule, please contact the Finance Office.
+
+Regards,
+
+Finance Office
+Amsterdam Business School
+University of Amsterdam`,
+  },
+  {
+    id: 5,
+    from: 'Finance Office · Amsterdam Business School',
+    subject: 'Payment Successful — Degree Due Diligence Fee',
+    preview: 'We have received your Degree Due Diligence fee payment of ₹30,000. Transaction reference: ABS-DD-2026-88421...',
+    date: '2026-06-27',
+    unread: false,
+    feeType: 'payment-success' as const,
+    body: `Dear Mithun Raj Kumar,
+
+This is to confirm that your payment has been received successfully.
+
+Payment Confirmation:
+Fee Type: Degree Due Diligence Fee
+Amount Paid: ₹30,000 (INR)
+Transaction Reference: ABS-DD-2026-88421
+Payment Date: 27 June 2026
+Payment Mode: Company bank account
+Status: Successful
+
+No further action is required for this payment.
+
+Regards,
+
+Finance Office
+Amsterdam Business School
+University of Amsterdam`,
+  },
   {
     id: 4,
     from: 'Finance Office · Amsterdam Business School',
     subject: 'Degree Due Diligence Fee — Payment Required',
     preview: 'Please remit the Degree Due Diligence fee of ₹30,000 through your registered company bank account. Last date: 29 June 2026...',
     date: '2026-06-27',
-    unread: true,
+    unread: false,
     deadline: '2026-06-29',
+    feeType: 'due-diligence' as const,
     body: `Dear Mithun Raj Kumar,
 
 Further to your selection for the Business Development degree under the Tier 2 category, please note that the Degree Due Diligence fee is now due.

@@ -1,6 +1,17 @@
 import { useState } from 'react'
 import { Mail, MailOpen, ArrowLeft, Star, Award } from 'lucide-react'
-import { emails, programmeDegree, dueDiligenceFee } from '../data/mockData'
+import {
+  emails,
+  programmeDegree,
+  dueDiligenceFee,
+  courseFeeExclTax,
+  courseFeeBtw,
+  courseFeeBtwRate,
+  courseFeeTotal,
+  autoDebitLastDate,
+  courseFeeInstalments,
+} from '../data/mockData'
+import CourseFeeBreakup from '../components/CourseFeeBreakup'
 
 function formatEmailDate(date: string) {
   return new Date(date).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })
@@ -39,7 +50,45 @@ export default function EmailsPage() {
             </div>
           </div>
 
-          {'deadline' in selected && selected.deadline && (
+          {'feeType' in selected && selected.feeType === 'payment-success' && (
+            <div className="mt-5 rounded-xl border border-green-200 bg-green-50 p-4">
+              <p className="text-xs font-semibold uppercase tracking-wider text-green-700">Payment Successful</p>
+              <p className="mt-1 text-lg font-bold text-abs-navy">
+                ₹{dueDiligenceFee.toLocaleString('en-IN')} — Degree Due Diligence Fee
+              </p>
+              <p className="mt-1 text-sm text-gray-600">
+                Payment received via company bank account.
+              </p>
+            </div>
+          )}
+
+          {'feeType' in selected && selected.feeType === 'course-fee' && (
+            <div className="mt-5 rounded-xl border border-amber-200 bg-amber-50 p-4">
+              <p className="text-xs font-semibold uppercase tracking-wider text-amber-700">Course Fee · Auto-Debit</p>
+              <p className="mt-1 text-lg font-bold text-abs-navy">
+                ₹{courseFeeTotal.toLocaleString('en-IN')} incl. BTW
+              </p>
+              <p className="mt-2 text-sm text-gray-600">
+                ₹{courseFeeExclTax.toLocaleString('en-IN')} excl. BTW + ₹{courseFeeBtw.toLocaleString('en-IN')} BTW ({courseFeeBtwRate}%)
+              </p>
+              <ul className="mt-3 space-y-1 text-sm text-gray-700">
+                <li>Last date of auto-debit: {formatEmailDate(autoDebitLastDate)}</li>
+                {courseFeeInstalments.map((instalment) => (
+                  <li key={instalment.label}>
+                    {instalment.label}: ₹{instalment.amount.toLocaleString('en-IN')} — {formatEmailDate(instalment.debitDate)}
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-5">
+                <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-amber-700">
+                  Fee Breakdown
+                </p>
+                <CourseFeeBreakup compact />
+              </div>
+            </div>
+          )}
+
+          {'deadline' in selected && selected.deadline && selected.feeType === 'due-diligence' && (
             <div className="mt-5 rounded-xl border border-amber-200 bg-amber-50 p-4">
               <p className="text-xs font-semibold uppercase tracking-wider text-amber-700">Payment Deadline</p>
               <p className="mt-1 text-lg font-bold text-abs-navy">
@@ -112,7 +161,8 @@ export default function EmailsPage() {
                 )}
                 {'deadline' in email && email.deadline && (
                   <span className="rounded-full bg-amber-100 px-2 py-0.5 text-xs font-medium text-amber-800">
-                    Due {formatEmailDate(email.deadline)}
+                    {'feeType' in email && email.feeType === 'course-fee' ? 'Auto-debit by' : 'Due'}{' '}
+                    {formatEmailDate(email.deadline)}
                   </span>
                 )}
               </div>
