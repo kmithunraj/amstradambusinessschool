@@ -8,7 +8,6 @@ import {
   BookOpen,
   MapPin,
   ChevronRight,
-  GraduationCap,
   Briefcase,
   Calendar,
   CheckCircle2,
@@ -21,6 +20,7 @@ import {
   Phone,
 } from 'lucide-react'
 import { landingImages } from '../data/landingImages'
+import AbsLogo from '../components/AbsLogo'
 
 const stats = [
   { value: 'Triple Crown', label: 'AACSB · AMBA · EQUIS Accredited' },
@@ -30,7 +30,7 @@ const stats = [
 ]
 
 const outcomes = [
-  { value: '2026', label: 'Inaugural India Executive Track launch year' },
+  { value: '2026', label: 'Inaugural cohort now in session' },
   { value: '2+ yrs', label: 'Minimum professional experience to apply' },
   { value: '12+', label: 'Corporate partners committed to the inaugural cohort' },
   { value: '3', label: 'Specialization tracks to align with your career goals' },
@@ -166,7 +166,7 @@ const faqs = [
   {
     question: 'How long is the programme and when does it start?',
     answer:
-      'The Executive MBA is a 24-month part-time programme across four semesters. The India Executive Track intake for 2026 begins in September. Application deadlines are published on the programme page and shared during advisory calls.',
+      'The Executive MBA is a 24-month part-time programme across four semesters. The inaugural India Executive Track cohort began in July 2026. Applications for this intake are now closed.',
   },
   {
     question: 'What specializations can I choose from?',
@@ -214,9 +214,7 @@ export default function LandingPage() {
       <nav className="fixed top-0 z-50 w-full border-b border-white/10 bg-abs-navy/95 backdrop-blur-md">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-abs-gold">
-              <GraduationCap className="h-6 w-6 text-abs-navy" />
-            </div>
+            <AbsLogo className="h-10 w-10" variant="contained" />
             <div>
               <p className="text-sm font-bold text-white">Amsterdam Business School</p>
               <p className="text-xs text-white/60">University of Amsterdam</p>
@@ -231,7 +229,7 @@ export default function LandingPage() {
             </a>
             <Link
               to="/login"
-              className="rounded-lg bg-abs-gold px-5 py-2.5 text-sm font-semibold text-abs-navy transition hover:bg-abs-gold-light"
+              className="hidden rounded-lg bg-abs-gold px-5 py-2.5 text-sm font-semibold text-abs-navy transition hover:bg-abs-gold-light sm:inline-block"
             >
               Student Login
             </Link>
@@ -252,7 +250,7 @@ export default function LandingPage() {
         <div className="relative mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <span className="mb-4 inline-block rounded-full border border-abs-gold/40 bg-abs-gold/10 px-4 py-1.5 text-sm font-medium text-abs-gold">
-              Inaugural Cohort · India Executive Track · Launching 2026
+              Inaugural Cohort · India Executive Track · Now in Session
             </span>
             <h1 className="font-display text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl">
               Lead with Purpose.<br />Think Globally.<br />Act from Amsterdam.
@@ -374,9 +372,9 @@ export default function LandingPage() {
               A New Programme Built for Emerging Executives
             </h2>
             <p className="mt-4 text-white/70">
-              Launched in 2026, the India Executive Track is backed by corporate leaders who see
-              the value of a triple-accredited global MBA for ambitious executives with 2+ years of
-              professional experience.
+              Launched in 2026, the inaugural India Executive Track cohort is now in session. The
+              programme is backed by corporate leaders and designed for ambitious executives with 2+
+              years of professional experience.
             </p>
           </div>
           <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
@@ -697,11 +695,11 @@ export default function LandingPage() {
           <div className="mx-auto max-w-3xl text-center">
             <p className="text-sm font-semibold uppercase tracking-wider text-abs-gold">Admissions</p>
             <h2 className="font-display mt-2 text-3xl font-bold text-abs-navy sm:text-4xl">
-              Your Path to Enrolment
+              Inaugural Cohort Underway
             </h2>
             <p className="mt-4 text-gray-600">
-              Applications for the inaugural September 2026 intake are now open. Early applications
-              are encouraged — cohort seats are limited for this first India Executive Track class.
+              The application deadline for the inaugural India Executive Track EMBA has passed. Our
+              first cohort began classes in July 2026 — enrolment for this intake is now closed.
             </p>
           </div>
           <div className="mt-14 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
@@ -714,17 +712,21 @@ export default function LandingPage() {
             ))}
           </div>
           <div className="mt-12 rounded-2xl bg-abs-navy p-8 text-center sm:p-10">
-            <p className="text-sm font-medium text-abs-gold">Inaugural intake: September 2026</p>
+            <p className="text-sm font-medium text-abs-gold">Inaugural Cohort · 2026</p>
             <p className="font-display mt-2 text-2xl font-bold text-white">
-              Application deadline: 15 July 2026
+              First cohort in session since July 2026
             </p>
-            <a
-              href="#contact"
+            <p className="mx-auto mt-3 max-w-xl text-sm text-white/75">
+              Applications for this intake are closed. Enrolled students can access the portal below.
+              For interest in future intakes, please get in touch via the contact form.
+            </p>
+            <Link
+              to="/login"
               className="mt-6 inline-flex items-center gap-2 rounded-lg bg-abs-gold px-8 py-3.5 text-sm font-semibold text-abs-navy transition hover:bg-abs-gold-light"
             >
-              Start Your Application Enquiry
+              Sign in to Student Portal
               <ArrowRight className="h-4 w-4" />
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -873,7 +875,10 @@ export default function LandingPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
             <div>
-              <p className="font-semibold text-white">Amsterdam Business School</p>
+              <div className="mb-4 flex items-center gap-3">
+                <AbsLogo className="h-9 w-9" variant="contained" />
+                <p className="font-semibold text-white">Amsterdam Business School</p>
+              </div>
               <p className="mt-2 text-sm">University of Amsterdam</p>
               <p className="mt-1 text-sm">Plantage Muidergracht 12</p>
               <p className="text-sm">1018 TV Amsterdam, Netherlands</p>

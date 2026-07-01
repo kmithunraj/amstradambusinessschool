@@ -1,5 +1,6 @@
 import { Award, Clock, CheckCircle2 } from 'lucide-react'
 import { certificates } from '../data/mockData'
+import AbsLogo from '../components/AbsLogo'
 
 const statusConfig = {
   in_progress: { label: 'In Progress', color: 'bg-amber-100 text-amber-800', icon: Clock },
@@ -17,9 +18,7 @@ export default function CertificatesPage() {
 
       <div className="rounded-xl border border-abs-gold/30 bg-gradient-to-r from-abs-navy to-abs-navy-light p-6 text-white">
         <div className="flex items-start gap-4">
-          <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-abs-gold">
-            <Award className="h-8 w-8 text-abs-navy" />
-          </div>
+          <AbsLogo className="h-14 w-14" variant="contained" />
           <div>
             <p className="text-sm text-white/70">Programme</p>
             <h2 className="text-xl font-semibold">Executive MBA – University of Amsterdam</h2>

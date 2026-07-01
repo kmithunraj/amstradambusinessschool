@@ -1,7 +1,8 @@
 import { useState, type FormEvent } from 'react'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
-import { GraduationCap, ArrowLeft, Mail, ShieldCheck, AlertCircle } from 'lucide-react'
+import { ArrowLeft, Mail, ShieldCheck, AlertCircle } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
+import AbsLogo from '../components/AbsLogo'
 
 export default function LoginPage() {
   const { user, pendingEmail, requestOtp, verifyOtp, cancelLogin } = useAuth()
@@ -66,9 +67,7 @@ export default function LoginPage() {
 
         <div className="mx-auto w-full max-w-md">
           <div className="mb-8 flex items-center gap-3">
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-abs-navy">
-              <GraduationCap className="h-7 w-7 text-abs-gold" />
-            </div>
+            <AbsLogo className="h-12 w-12" variant="contained" />
             <div>
               <p className="font-semibold text-abs-navy">Amsterdam Business School</p>
               <p className="text-sm text-gray-500">Student Portal Sign In</p>

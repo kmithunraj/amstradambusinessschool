@@ -11,12 +11,12 @@ import {
   LogOut,
   Menu,
   X,
-  GraduationCap,
   FileText,
 } from 'lucide-react'
 import { useState } from 'react'
 import { useAuth } from '../../context/AuthContext'
 import { admissionCategory } from '../../data/mockData'
+import AbsLogo from '../AbsLogo'
 
 const navItems = [
   { to: '/portal/dashboard', label: 'Dashboard', icon: LayoutDashboard },
@@ -44,9 +44,7 @@ export default function DashboardLayout() {
     <aside className="flex h-full w-64 flex-col bg-abs-navy text-white">
       <div className="border-b border-white/10 px-5 py-6">
         <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-abs-gold">
-            <GraduationCap className="h-6 w-6 text-abs-navy" />
-          </div>
+          <AbsLogo className="h-10 w-10" variant="contained" />
           <div>
             <p className="text-xs font-medium uppercase tracking-wider text-white/60">Student Portal</p>
             <p className="text-sm font-semibold leading-tight">Amsterdam Business School</p>
