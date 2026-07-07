@@ -13,7 +13,9 @@ function formatDateShort(date: string) {
 
 function daysUntilStart() {
   const start = new Date(programmeStartDate)
-  const today = new Date('2026-06-27')
+  const today = new Date()
+  today.setHours(0, 0, 0, 0)
+  start.setHours(0, 0, 0, 0)
   return Math.ceil((start.getTime() - today.getTime()) / (1000 * 60 * 60 * 24))
 }
 
@@ -22,6 +24,14 @@ export default function DashboardPage() {
   const unreadEmails = emails.filter((e) => e.unread).length
   const nextClass = upcomingClasses[0]
   const daysLeft = daysUntilStart()
+  const programmeStarted = daysLeft <= 0
+  const startStatusText =
+    daysLeft > 1 ? `Your programme starts in ${daysLeft} days`
+    : daysLeft === 1 ? 'Your programme starts tomorrow'
+    : daysLeft === 0 ? 'Your programme starts today' : 'Your programme is now in session'
+  const startStatusBody = programmeStarted
+    ? `Your first live session, Strategic Performance Management, began on ${formatDate(programmeStartDate)}. Cohort orientation was held on ${formatDate(orientationDate)}. You can now review your schedule, course materials, and onboarding updates in the portal.`
+    : `First live session: Strategic Performance Management on ${formatDate(programmeStartDate)}. Cohort orientation is on ${formatDate(orientationDate)}. Review pre-reading materials and complete onboarding tasks before classes begin.`
 
   return (
     <div className="space-y-8">
@@ -39,11 +49,8 @@ export default function DashboardPage() {
         <div className="flex items-start gap-3">
           <Rocket className="mt-0.5 h-5 w-5 shrink-0 text-blue-600" />
           <div>
-            <p className="font-semibold text-blue-900">Your programme starts in {daysLeft} days</p>
-            <p className="mt-1 text-sm text-blue-700">
-              First live session: Strategic Performance Management on {formatDate(programmeStartDate)}. Cohort orientation
-              is on {formatDate(orientationDate)}. Review pre-reading materials and complete onboarding tasks before classes begin.
-            </p>
+            <p className="font-semibold text-blue-900">{startStatusText}</p>
+            <p className="mt-1 text-sm text-blue-700">{startStatusBody}</p>
           </div>
         </div>
       </div>
@@ -51,10 +58,28 @@ export default function DashboardPage() {
       {/* Quick stats */}
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {[
-          { label: 'Enrolled Modules', value: '7', sub: 'Semester 1 · Not yet started', icon: BookOpen, color: 'bg-blue-50 text-blue-700' },
+          {
+            label: 'Enrolled Modules',
+            value: '7',
+            sub: programmeStarted ? 'Semester 1 · In progress' : 'Semester 1 · Not yet started',
+            icon: BookOpen,
+            color: 'bg-blue-50 text-blue-700',
+          },
           { label: 'Unread Emails', value: String(unreadEmails), sub: 'Onboarding & prep', icon: Mail, color: 'bg-amber-50 text-amber-700' },
-          { label: 'Days Until Start', value: String(daysLeft), sub: `First session ${formatDateShort(programmeStartDate)}`, icon: Calendar, color: 'bg-green-50 text-green-700' },
-          { label: 'Programme Progress', value: '0%', sub: 'Classes not yet started', icon: Rocket, color: 'bg-purple-50 text-purple-700' },
+          {
+            label: programmeStarted ? 'Programme Status' : 'Days Until Start',
+            value: programmeStarted ? 'Live' : String(daysLeft),
+            sub: `First session ${formatDateShort(programmeStartDate)}`,
+            icon: Calendar,
+            color: 'bg-green-50 text-green-700',
+          },
+          {
+            label: 'Programme Progress',
+            value: programmeStarted ? 'Started' : '0%',
+            sub: programmeStarted ? 'Classes underway' : 'Classes not yet started',
+            icon: Rocket,
+            color: 'bg-purple-50 text-purple-700',
+          },
         ].map(({ label, value, sub, icon: Icon, color }) => (
           <div key={label} className="rounded-xl border border-gray-200 bg-white p-5">
             <div className="flex items-start justify-between">
