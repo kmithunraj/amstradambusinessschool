@@ -92,6 +92,43 @@ import {
 
 export const emails = [
   {
+    id: 7,
+    from: 'Finance Office · Amsterdam Business School',
+    subject: 'Payment Successful — Course Fee Auto-Debit Confirmed',
+    preview: 'Your course fee auto-debit of ₹3,19,300 has been processed successfully. Payment reference: ABS-CF-2026-19057...',
+    date: '2026-07-05',
+    unread: true,
+    feeType: 'auto-debit-success' as const,
+    body: `Dear Mithun Raj Kumar,
+
+This is to confirm that the scheduled auto-debit for your course fee has been processed successfully.
+
+Payment Confirmation:
+Fee Type: Course Fee Auto-Debit
+Amount Debited: ${formatInr(courseFeeTotal)} (INR)
+Payment Date: 5 July 2026
+Payment Mode: e-NACH Auto-Debit
+Bank Reference Number: UVA-ENACH-260705-44192
+Finance Receipt Number: ABS-FIN-2026-19057
+Mandate Reference: ENACH-ABS-784421
+Status: Successful
+
+Fee Summary:
+Course Fee (excl. BTW): ${formatInr(courseFeeExclTax)}
+BTW — Belasting toegevoegde waarde (3%): ${formatInr(courseFeeBtw)}
+Total Course Fee Paid: ${formatInr(courseFeeTotal)}
+
+Your course fee stands fully settled. There are no pending programme fee payments at this time.
+
+Please retain this email for your finance records and reimbursement documentation, if applicable.
+
+Regards,
+
+Finance Office
+Amsterdam Business School
+University of Amsterdam`,
+  },
+  {
     id: 6,
     from: 'Finance Office · Amsterdam Business School',
     subject: 'Course Fee — Auto-Debit Schedule & Payment Details',

@@ -62,6 +62,20 @@ export default function EmailsPage() {
             </div>
           )}
 
+          {'feeType' in selected && selected.feeType === 'auto-debit-success' && (
+            <div className="mt-5 rounded-xl border border-green-200 bg-green-50 p-4">
+              <p className="text-xs font-semibold uppercase tracking-wider text-green-700">
+                Auto-Debit Successful
+              </p>
+              <p className="mt-1 text-lg font-bold text-abs-navy">
+                ₹{courseFeeTotal.toLocaleString('en-IN')} — Course Fee Paid
+              </p>
+              <p className="mt-1 text-sm text-gray-600">
+                Payment received via e-NACH auto-debit. No pending programme fee payments.
+              </p>
+            </div>
+          )}
+
           {'feeType' in selected && selected.feeType === 'course-fee' && (
             <div className="mt-5 rounded-xl border border-amber-200 bg-amber-50 p-4">
               <p className="text-xs font-semibold uppercase tracking-wider text-amber-700">Course Fee · Auto-Debit</p>
